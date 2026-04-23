@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Educational Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+                  url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 70px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #006080;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin-left: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #006080;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: #00ace6;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    /* ===== MAIN (flex column, button at bottom) ===== */
+    .home {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;     /* center vertically */
+      align-items: center;
+      padding: 10px 30px 5px;      /* reduced bottom padding */
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* grid container (cards only) */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 240px);  /* slightly smaller to fit button below */
+      gap: 18px;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      padding: 16px 14px;
+      box-shadow: 0 12px 28px -10px rgba(0,60,80,0.3);
+      border: 1px solid rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      height: 240px;               /* fixed to match grid row */
+      overflow: hidden;
+      transition: 0.15s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 32px -8px #00608060;
+    }
+
+    .card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #006080;
+      margin-bottom: 8px;
+      border-left: 5px solid #00ace6;
+      padding-left: 10px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    /* profile image */
+    .profile {
+      text-align: center;
+      margin: 0 0 4px;
+      flex-shrink: 0;
+    }
+    .profile img {
+      width: 85px;                 /* slightly smaller */
+      height: 85px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00ace6;
+      box-shadow: 0 6px 12px rgba(0,96,128,0.3);
+    }
+
+    /* intro text */
+    .intro {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: #1d3d4f;
+      background: #ecf7ff;
+      padding: 8px 10px;
+      border-radius: 18px;
+      margin: 4px 0 0;
+      flex-shrink: 0;
+    }
+
+    /* lists */
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .card ul li {
+      padding: 5px 0 5px 26px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="%2300ace6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') left center no-repeat;
+      background-size: 14px;
+      border-bottom: 1px solid #d0e6f0;
+      font-size: 12.5px;
+      color: #144d66;
+      line-height: 1.3;
+    }
+    .card ul li:last-child {
+      border-bottom: none;
+    }
+
+    /* moods row */
+    .moods {
+      display: flex;
+      justify-content: space-around;
+      gap: 4px;
+      margin: 6px 0 0;
+      flex-shrink: 0;
+    }
+    .mood-item {
+      background: #e3f2fd;
+      border-radius: 40px;
+      padding: 4px 0;
+      width: 65px;
+      text-align: center;
+      border: 1px solid white;
+      box-shadow: 0 4px 8px rgba(0,128,128,0.15);
+    }
+    .mood-icon {
+      font-size: 24px;
+      display: block;
+      line-height: 1.2;
+    }
+    .mood-item span:last-child {
+      font-size: 12px;
+      font-weight: 600;
+      color: #006080;
+    }
+
+    /* movie note */
+    .movie-note {
+      background: #fff1c1;
+      color: #755e0b;
+      padding: 4px 8px;
+      border-radius: 30px;
+      font-size: 11px;
+      margin: 0 0 4px 0;
+      border-left: 4px solid #f0b400;
+      flex-shrink: 0;
+    }
+
+    /* fun facts icons */
+    .facts li {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%23ff9f4b"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>') left center no-repeat;
+      background-size: 16px;
+    }
+
+    /* contact list (no bullets) */
+    .contact-list li {
+      background: none !important;
+      padding-left: 0 !important;
+      border-bottom: none;
+      font-size: 12px;
+    }
+
+    /* ----- BOTTOM ROW (back button + footer spacer) ----- */
+    .bottom-row {
+      width: 100%;
+      max-width: 1300px;
+      margin-top: 12px;            /* space above button */
+      display: flex;
+      justify-content: flex-end; /* left aligned */
+      flex-shrink: 0;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #e1f0f7;
+      color: #006080;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 10px 26px;
+      border-radius: 60px;
+      border: 1px solid #b9ddf5;
+      box-shadow: 0 4px 12px rgba(0,100,130,0.15);
+      transition: 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #c5e3f0;
+      transform: translateX(-3px);
+    }
+
+    /* footer */
+    footer{
+background:#006080;
+color:white;
+text-align:center;
+padding:18px;
+font-size:14px;
+}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Jenelyn Sunido</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="project.html">Project</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="home">
+    <!-- cards grid -->
+    <div class="container">
+
+      <!-- CARD 1 – About + profile pic -->
+      <div class="card">
+        <h2>✨ About Jene</h2>
+        <div class="profile">
+          <img src="profile.jpg" alt="Jenelyn">
+        </div>
+        <p class="intro">Hi! am passionate about technology and programming. I enjoy learning how to create simple websites and improving my skills in web development. I am motivated to keep learning new things and grow in the field of Information Technology.</p>
+      </div>
+
+      <!-- CARD 2 – Classes -->
+      <div class="card">
+        <h2>📘 Classes</h2>
+        <ul>
+          <li>WS101 – Web Systems</li>
+          <li>NT1101 – Networking 1</li>
+          <li>PF101 – Programming Fundamentals</li>
+        </ul>
+      </div>
+
+      <!-- CARD 3 – Movies (with note) -->
+      <div class="card">
+        <h2>🎬 Movies</h2>
+        <div class="movie-note">❤️ K-dramas make me happy</div>
+        <ul>
+          <li>Descendants of the Sun</li>
+          <li>Hostel</li>
+          <li>Big Mouth</li>
+        </ul>
+      </div>
+
+      <!-- CARD 4 – Moods -->
+      <div class="card">
+        <h2>🌿 Moods</h2>
+        <div class="moods">
+          <div class="mood-item"><span class="mood-icon">😊</span><span>Happy</span></div>
+          <div class="mood-item"><span class="mood-icon">😢</span><span>Sad</span></div>
+          <div class="mood-item"><span class="mood-icon">😠</span><span>Angry</span></div>
+        </div>
+      </div>
+
+      <!-- CARD 5 – Fun facts neighbors -->
+      <div class="card">
+        <h2>🏡 Neighbors</h2>
+        <ul class="facts">
+          <li>Sharon Baldo – my kind aunt</li>
+          <li>Ashley Sunido – teammate & playmate</li>
+        </ul>
+      </div>
+
+      <!-- CARD 6 – Contact info (compact) -->
+      <div class="card">
+        <h2>📬 Contact</h2>
+        <ul class="contact-list">
+          <li>📧 jenelyn...@gmail.com</li>
+          <li>📞 0976 543 2100</li>
+          <li>📍 Maturanoc, Guimba</li>
+        </ul>
+      </div>
+
+    </div> <!-- end container -->
+
+    <!-- BACK BUTTON (now at the bottom, above footer) -->
+    <div class="bottom-row">
+      <a href="prelim.html" class="back-btn">← Back to Prelim</a>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Jenelyn B. Sunido. All rights reserved.
+  </footer>
+
+  <script>
+    function logout() {
+      alert("👋 Logged out (demo)");
+    }
+  </script>
+</body>
+</html>

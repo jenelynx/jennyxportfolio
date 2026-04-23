@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educational Portfolio</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+body{
+  background:
+    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+    url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 70px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#006080;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+}
+
+nav ul li{
+  margin-left:30px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#006080;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.logout{
+  background:#00ace6;
+  color:white;
+  padding:6px 16px;
+  border-radius:20px;
+}
+
+/* ===== MAIN SECTION ===== */
+.section{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center; /* vertical center */
+  padding:40px 20px;
+}
+
+/* ===== CONTAINER FOR CARDS ===== */
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:30px;
+  justify-content:center;
+  align-items:stretch; /* makes all cards same height */
+  max-width:1530px; /* increased to comfortably fit 4 cards + gaps */
+  width:100%;
+}
+
+/* ===== PROJECT CARD ===== */
+.card{
+  background:white;
+  padding:40px;         /* slightly bigger padding */
+  width:360px;          /* slightly wider */
+  min-height:340px;     /* slightly taller */
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  transition:transform 0.3s, box-shadow 0.3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+
+.card h2{
+  font-size:26px;
+  color:#006080;
+  margin-bottom:15px;
+}
+
+.card p{
+  font-size:16px;
+  color:#334155;
+  line-height:1.6;
+  margin-bottom:20px;
+  flex-grow:1;
+}
+
+.project-btn{
+  display:inline-block;
+  text-decoration:none;
+  background:#00ace6;
+  color:white;
+  padding:12px 28px;
+  border-radius:25px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.project-btn:hover{
+  background:#007bb3;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1530px){
+  .container{
+    max-width:1200px;
+  }
+}
+
+@media(max-width:1200px){
+  .card{
+    width:330px;
+    min-height:320px;
+  }
+  .container{
+    max-width:1100px;
+  }
+}
+
+@media(max-width:900px){
+  .container{
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#006080;
+  color:white;
+  text-align:center;
+  padding:18px;
+  font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="project.html">Project</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Project 1 -->
+    <div class="card">
+      <h2>The Ant and the Grasshopper</h2>
+      <p>Interactive story website with multiple chapters, navigation, and beautiful images. Each chapter has its own page with seamless navigation.</p>
+      <a href="home.html" class="project-btn">Read Story</a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="card">
+      <h2>My Enhanstatic Page</h2>
+      <p>This About Me page highlights personal background, achievements, and interests, giving visitors a clear insight into who I am.</p>
+      <a href="enhanstatic.html" class="project-btn">View Now</a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="card">
+      <h2>User Persona and Journey Map</h2>
+      <p>This section showcases the User Persona and Journey Map, helping to understand the target user's behavior, needs, and overall experience when using the website.</p>
+      <a href="persona.html" class="project-btn">View Now</a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="card">
+      <h2>Wireframe</h2>
+      <p>A wireframe is a simple layout that shows the basic structure of a website or application, including the placement of text, images, and buttons.</p>
+      <a href="wireframe.html" class="project-btn">View Now</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+© 2026 Student Portfolio | Jenelyn B. Sunido
+</footer>
+
+<script>
+function logout(){
+  alert("You have been logged out.");
+}
+</script>
+
+</body>
+</html>

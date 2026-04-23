@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FileZilla & Video · Portfolio</title>
+
+<style>
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+body{
+  background:
+    linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+    url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 70px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#006080;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+}
+
+nav ul li{
+  margin-left:30px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#006080;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.logout{
+  background:#00ace6;
+  color:white;
+  padding:6px 16px;
+  border-radius:20px;
+}
+
+/* ===== MAIN SECTION ===== */
+.home{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:50px 20px;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  display:flex;
+  gap:40px;
+  flex-wrap:wrap;
+  justify-content:center;
+  max-width:1300px;
+  width:100%;
+}
+
+/* ===== CARD — mas malapad, mas mababa ===== */
+.card{
+  background:white;
+  padding:28px 35px;
+  width:500px;
+  border-radius:20px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  transition:0.3s;
+  text-align:center;
+}
+
+.card h2{
+  font-size:26px;
+  margin-bottom:18px;
+  color:#006080;
+}
+
+.card p{
+  font-size:15px;
+  line-height:1.6;
+  color:#334155;
+  margin-bottom:15px;
+  text-align:left;
+}
+
+/* ===== VIDEO STYLING ===== */
+.card video{
+  width:100%;
+  max-width:440px;
+  height:auto;
+  border-radius:15px;
+  margin-bottom:15px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* ===== FILEZILLA INNER ===== */
+.fz-box{
+  background:#f3f9ff;
+  border-radius:15px;
+  padding:15px 18px;
+  margin:8px 0 12px;
+  border:1px dashed #00ace6;
+  text-align:left;
+}
+
+.fz-box ul{
+  list-style:none;
+  padding-left:5px;
+  margin:8px 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px 10px;
+}
+
+.fz-box li{
+  padding:4px 0;
+  font-size:14px;
+  color:#1e3f4f;
+}
+
+.fz-icon{
+  width:70px;
+  margin:0 auto 12px;
+  display:block;
+}
+
+.feature-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  justify-content:center;
+  margin:10px 0 5px;
+}
+
+.feature-tags span{
+  background:#d9eaf3;
+  padding:4px 12px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:500;
+  color:#004d66;
+}
+
+/* ===== BUTTON — sa left box lang, ibaba kunti ===== */
+.buttons-left{
+  margin-top:25px;              /* ibinaba kunti */
+  text-align:center;
+}
+
+.buttons-left a{
+  display:inline-block;
+  text-decoration:none;
+  background:#00ace6;
+  color:white;
+  padding:12px 28px;
+  border-radius:25px;
+  font-weight:bold;
+  font-size:15px;
+  transition:0.3s;
+}
+
+.buttons-left a:hover{
+  background:#007bb3;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#006080;
+  color:white;
+  text-align:center;
+  padding:18px;
+  font-size:14px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1000px){
+  .container{
+    flex-direction:column;
+    align-items:center;
+  }
+  .card{
+    width:500px;
+    max-width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="project.html">Project</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section class="home">
+  <div class="container">
+
+    <!-- ===== LEFT: FILEZILLA (may button) ===== -->
+    <div class="card">
+      <h2>Tutorial of Setting Up DNS & HTTPS/SSL & Backup</h2>
+      
+      <div class="fz-box">
+         <p>This tutorial introduces the basics of setting up DNS, HTTPS/SSL, and backup connecting a domain, securing a website with SSL, and protecting data. It also explains how to configure records, enable encryption, and create backups to prevent data loss. Perfect for beginners starting website deployment, security, and maintenance.</p>
+      </div>
+
+
+      <div class="buttons-left">
+        <a href="finals.html">Return to Finals</a>
+      </div>
+    </div>
+
+    <!-- ===== RIGHT: VIDEO (walang button) ===== -->
+    <div class="card">
+      <h2>Video of Tutorial of Setting Up DNS & HTTPS/SSL & Backup</h2>
+      <p style="text-align:center; margin-bottom:10px;"><strong>Filezilla · Landscape</strong></p>
+      
+      <!-- Landscape Video -->
+      <video controls poster="bds.png">
+        <source src="Tutorial.mp4" type="video/mp4">
+        <source src="Tutorial.mp4" type="video/ogg">
+      </video>
+      
+      <p style="font-size:13px; color:#3a5f6f; text-align:center;">
+        🎥 4:17 Landscape • MP4 • 0:23
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Jenelyn Sunido | My Educational Portfolio
+</footer>
+
+<script>
+function logout(){
+  alert("You have been logged out.");
+}
+</script>
+
+</body>
+</html>

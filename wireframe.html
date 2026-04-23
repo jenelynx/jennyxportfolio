@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educational Portfolio · Pastel Blue Border + Lightbox</title>
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ===== BACKGROUND ===== */
+    body {
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+        url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 70px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #006080;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin-left: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #006080;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: #00ace6;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    /* ===== MAIN SECTION ===== */
+    .section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    /* ----- TOP BOX (intro) ----- */
+    .top-intro-box {
+      background: white;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto 40px auto;
+      padding: 30px 40px;
+      border-radius: 28px;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      border-left: 8px solid #00ace6;
+    }
+
+    .top-intro-box h2 {
+      font-size: 30px;
+      color: #006080;
+      margin-bottom: 12px;
+    }
+
+    .top-intro-box p {
+      font-size: 18px;
+      color: #1e3a5f;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ===== CONTAINER FOR CARDS ===== */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: stretch;
+      max-width: 1530px;
+      width: 100%;
+    }
+
+    /* ===== PROJECT CARD ===== */
+    .card {
+      background: white;
+      padding: 30px 20px 35px;
+      width: 360px;
+      min-height: 380px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      
+      /* 🎨 PASTEL BLUE BORDER SA CARD */
+      border: 3px solid #93c5fd;
+      box-shadow: 
+        0 18px 40px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(147, 197, 253, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    /* subtle pattern overlay sa card */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(147, 197, 253, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.05) 0%, transparent 30%);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        0 0 0 3px rgba(147, 197, 253, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      border-color: #60a5fa;
+    }
+
+    /* --- DESIGNED BOX (CARD-IMAGE) --- */
+    .card-image {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      /* 🎨 GRADIENT BACKGROUND */
+      background: linear-gradient(145deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+      
+      border-radius: 24px;
+      overflow: hidden;
+      
+      /* 🎨 COMPLEX SHADOW (inner + outer) */
+      box-shadow: 
+        0 10px 25px rgba(59, 130, 246, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.05),
+        inset 0 3px 8px rgba(255, 255, 255, 0.7);
+      
+      /* 🎨 PASTEL BLUE BORDER SA IMAGE BOX */
+      border: 4px solid #bfdbfe;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+
+    /* inner glow effect */
+    .card-image::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      border-radius: 16px;
+      background: transparent;
+      box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.6);
+      pointer-events: none;
+    }
+
+    .card-image:hover {
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 
+        0 15px 30px rgba(37, 99, 235, 0.35),
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.08),
+        inset 0 5px 12px rgba(255, 255, 255, 0.9);
+      border-color: #60a5fa;
+    }
+
+    /* Style para sa <img> sa loob ng card-image */
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: transparent;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.4s;
+    }
+
+    .card-image:hover img {
+      transform: scale(1.02);
+    }
+
+    /* label under picture - designed */
+    .card-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e3a5f;
+      margin: 5px 0 0px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #1e3a5f, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 30px;
+      background-color: rgba(219, 234, 254, 0.4);
+      backdrop-filter: blur(4px);
+      
+      /* 🎨 PASTEL BLUE BORDER SA LABEL */
+      border: 2px solid #93c5fd;
+      transition: all 0.2s;
+    }
+
+    .card:hover .card-label {
+      background-color: rgba(219, 234, 254, 0.7);
+      border-color: #60a5fa;
+      box-shadow: 0 4px 10px rgba(59, 130, 246, 0.15);
+    }
+
+    /* ---- LIGHTBOX (Modal para sa pinalaking larawan) ---- */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 28px;
+      box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
+      
+      /* 🎨 PASTEL BLUE BORDER SA LIGHTBOX IMAGE */
+      border: 5px solid #bfdbfe;
+      background: white;
+      padding: 8px;
+      transition: transform 0.3s;
+    }
+
+    .lightbox img:hover {
+      transform: scale(1.01);
+      border-color: #60a5fa;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 45px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(59, 130, 246, 0.3);
+      width: 65px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      line-height: 1;
+      backdrop-filter: blur(10px);
+      
+      /* 🎨 PASTEL BLUE BORDER SA CLOSE BUTTON */
+      border: 2px solid #93c5fd;
+    }
+
+    .close-lightbox:hover {
+      background: #60a5fa;
+      color: white;
+      transform: rotate(90deg);
+      border-color: #bfdbfe;
+    }
+
+    /* ---- back button (right side) ---- */
+    .back-wrapper {
+      width: 100%;
+      max-width: 1530px;
+      margin-top: 35px;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 10px;
+    }
+
+    .back-prelim-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #006080, #0088aa);
+      color: white;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 8px 18px rgba(0, 96, 128, 0.3);
+      transition: all 0.3s;
+      
+      /* 🎨 PASTEL BLUE BORDER SA BACK BUTTON */
+      border: 2px solid #93c5fd;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(4px);
+    }
+
+    .back-prelim-btn:hover {
+      background: linear-gradient(135deg, #004c66, #006080);
+      transform: translateX(-5px);
+      box-shadow: 0 12px 25px rgba(0, 96, 128, 0.4);
+      border-color: #bfdbfe;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width: 1530px) {
+      .container { max-width: 1200px; }
+    }
+    @media(max-width: 1200px) {
+      .card { width: 330px; min-height: 350px; }
+      .container { max-width: 1100px; }
+    }
+    @media(max-width: 900px) {
+      .container { flex-direction: column; align-items: center; }
+      nav { padding: 18px 25px; flex-wrap: wrap; }
+      .back-wrapper { justify-content: center; padding-right: 0; }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, #006080, #004c66);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      
+      /* 🎨 PASTEL BLUE BORDER SA FOOTER (top border lang) */
+      border-top: 3px solid #93c5fd;
+    }
+    .section { width: 100%; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="project.html">Project</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  
+  <!-- top intro box -->
+  <div class="top-intro-box">
+    <h2>Wireframe</h2>
+    <p>A wireframe is a simple layout that shows the basic structure of a website or application, including the placement of text, images, and buttons. It is used as a guide before creating the final design.</p>
+  </div>
+
+  <!-- CARDS NA MAY PASTEL BLUE BORDER -->
+  <div class="container">
+
+    <!-- Card 1: Interactive Story -->
+    <div class="card">
+      <div class="card-image" data-full-img="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/676830084_2402580013595406_8505972620500164038_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF3kpS6WEtsRmZrvgOZUt43BHRguVbFOAsEdGC5VsU4C-QjDHFzLCOz7TWAk0nkcbmaCHGJImh-bDrS7J1-TzvW&_nc_ohc=BF2dz3mdWZQQ7kNvwFZkY7f&_nc_oc=AdoY64Lp4TW4miTHpQZmm6ystc_4aBnEV1yjSQIZQ5oBtYmZhT19eWkynIMTOSd6wdE&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=_LWHRBPsTFsyQBkYN9wabg&_nc_ss=7a3a8&oh=00_Af29H_8GCcQuK1jP8KmprXVce2YyZ6A8Nfx8HNAw-zzBdQ&oe=69EE5343">
+        <img src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/676830084_2402580013595406_8505972620500164038_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeF3kpS6WEtsRmZrvgOZUt43BHRguVbFOAsEdGC5VsU4C-QjDHFzLCOz7TWAk0nkcbmaCHGJImh-bDrS7J1-TzvW&_nc_ohc=BF2dz3mdWZQQ7kNvwFZkY7f&_nc_oc=AdoY64Lp4TW4miTHpQZmm6ystc_4aBnEV1yjSQIZQ5oBtYmZhT19eWkynIMTOSd6wdE&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=_LWHRBPsTFsyQBkYN9wabg&_nc_ss=7a3a8&oh=00_Af29H_8GCcQuK1jP8KmprXVce2YyZ6A8Nfx8HNAw-zzBdQ&oe=69EE5343" alt="Story Image">
+      </div>
+      <div class="card-label">✨ Click Image</div>
+    </div>
+
+    <!-- Card 2: Static Showcase -->
+    <div class="card">
+      <div class="card-image" data-full-img="https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/678769405_2402586840261390_5370908441518746524_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG-zre4hD4H1xxQ8nnOmRa9WBcFr5cEm6dYFwWvlwSbp2yBOx9idYcBbnLthhbILK0hXHLBN4ZiC6_6xj9oMYEo&_nc_ohc=n0Bit_h4gzUQ7kNvwHbTEZ2&_nc_oc=Adp8ufBGPgqzZPyrDGAtZYL7n9t6-nFUMrUxT-J2gD_7BODF5XToHC6PERxEhCuZaIc&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=nR-HVfWTH4OnEptCRJyC9A&_nc_ss=7a3a8&oh=00_Af2HzmlToQkEiZcqkzN7zdMTe5lySxToUwz3NT-e1HQ5tQ&oe=69EE3FC3">
+        <img src="https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/678769405_2402586840261390_5370908441518746524_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG-zre4hD4H1xxQ8nnOmRa9WBcFr5cEm6dYFwWvlwSbp2yBOx9idYcBbnLthhbILK0hXHLBN4ZiC6_6xj9oMYEo&_nc_ohc=n0Bit_h4gzUQ7kNvwHbTEZ2&_nc_oc=Adp8ufBGPgqzZPyrDGAtZYL7n9t6-nFUMrUxT-J2gD_7BODF5XToHC6PERxEhCuZaIc&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=nR-HVfWTH4OnEptCRJyC9A&_nc_ss=7a3a8&oh=00_Af2HzmlToQkEiZcqkzN7zdMTe5lySxToUwz3NT-e1HQ5tQ&oe=69EE3FC3" alt="Showcase Image">
+      </div>
+      <div class="card-label">✨ Click Image</div>
+    </div>
+
+    <!-- Card 3: User Persona -->
+    <div class="card">
+      <div class="card-image" data-full-img="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/679853300_2402588313594576_3348583338160381864_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEAoAfzoNqy6Q32Bco3jXiF6dneHiA7Uunp2d4eIDtS6VzVXXpvP_GcfGdNA87cODycyPbFu9CqPXQH2BRDoN4s&_nc_ohc=vKlilY2iofwQ7kNvwGplGt5&_nc_oc=Ado_l-O3k_zoAn8-sFpu1OlupFwWZNoPePE0MOITfpaqS71m9HEQy7y-u1-AaZIrIM4&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=D1FLgngBLtShm45CeCFFCw&_nc_ss=7a3a8&oh=00_Af2ghaVFZ73zP5guYyV9nzuPfU4imkFEJVLH2M-PdB6sxQ&oe=69EE4A55">
+        <img src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/679853300_2402588313594576_3348583338160381864_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEAoAfzoNqy6Q32Bco3jXiF6dneHiA7Uunp2d4eIDtS6VzVXXpvP_GcfGdNA87cODycyPbFu9CqPXQH2BRDoN4s&_nc_ohc=vKlilY2iofwQ7kNvwGplGt5&_nc_oc=Ado_l-O3k_zoAn8-sFpu1OlupFwWZNoPePE0MOITfpaqS71m9HEQy7y-u1-AaZIrIM4&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=D1FLgngBLtShm45CeCFFCw&_nc_ss=7a3a8&oh=00_Af2ghaVFZ73zP5guYyV9nzuPfU4imkFEJVLH2M-PdB6sxQ&oe=69EE4A55" alt="Persona Image">
+      </div>
+      <div class="card-label">✨ Click Image</div>
+    </div>
+
+    <!-- Card 4: Animation Lab -->
+    <div class="card">
+      <div class="card-image" data-full-img="https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/678518388_2402588903594517_6883885952988734922_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHtmNKAen0hlKFOVUrkGk-CaGtHeNAk9Ohoa0d40CT06OtNbd5vhhPPiZD9u-M08oEYPFVow5Hp_8ebHhTuCY4w&_nc_ohc=0s_02t5h4X4Q7kNvwEvXnrJ&_nc_oc=Adq9pcS9x2EDzmR9dd40dTIH7TO7SnOv0ME58Tqx2eFO9XSyAELDfudWp8lHgVqe-zI&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=UMU4sCMo1SLDdwnIgEnjaQ&_nc_ss=7a3a8&oh=00_Af33LTor-9IKo-2IEOP5ldqjDmjNawXxvpeBRiTgiZ3scQ&oe=69EE3BE3">
+        <img src="https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/678518388_2402588903594517_6883885952988734922_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHtmNKAen0hlKFOVUrkGk-CaGtHeNAk9Ohoa0d40CT06OtNbd5vhhPPiZD9u-M08oEYPFVow5Hp_8ebHhTuCY4w&_nc_ohc=0s_02t5h4X4Q7kNvwEvXnrJ&_nc_oc=Adq9pcS9x2EDzmR9dd40dTIH7TO7SnOv0ME58Tqx2eFO9XSyAELDfudWp8lHgVqe-zI&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=UMU4sCMo1SLDdwnIgEnjaQ&_nc_ss=7a3a8&oh=00_Af33LTor-9IKo-2IEOP5ldqjDmjNawXxvpeBRiTgiZ3scQ&oe=69EE3BE3" alt="Lab Image">
+      </div>
+      <div class="card-label">✨ Click Image</div>
+    </div>
+
+  </div> <!-- end container -->
+
+  <!-- back button: CORRECTED to "Back to Prelim" and links to prelim.html -->
+  <div class="back-wrapper">
+    <a href="prelim.html" class="back-prelim-btn" id="prelimBtn">← Back to Prelim</a>
+  </div>
+
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="" alt="Expanded view">
+</div>
+
+<footer>
+  © 2026 Student Portfolio | Jenelyn B. Sunido
+</footer>
+
+<script>
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  
+  const imageContainers = document.querySelectorAll('.card-image');
+  
+  imageContainers.forEach(container => {
+    container.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      const fullImgUrl = this.getAttribute('data-full-img');
+      
+      let imgSrc = fullImgUrl;
+      if (!imgSrc) {
+        const innerImg = this.querySelector('img');
+        imgSrc = innerImg ? innerImg.src : '';
+      }
+      
+      if (imgSrc) {
+        lightboxImg.src = imgSrc;
+        lightbox.classList.add('active');
+      }
+    });
+  });
+  
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+  }
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+  
+  lightboxImg.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  function logout() {
+    alert("You have been logged out.");
+  }
+
+  // (No need for extra DOMContentLoaded for back button since link is static and correct)
+  // But keep if any other dynamic needs; it's safe.
+  document.addEventListener('DOMContentLoaded', function() {
+    // Just in case any dynamic behavior is needed later.
+    const backBtn = document.getElementById('prelimBtn');
+    if (backBtn) {
+      // It already has href="prelim.html", so no preventDefault needed.
+      // We can optionally log or do nothing.
+    }
+  });
+</script>
+
+</body>
+</html>

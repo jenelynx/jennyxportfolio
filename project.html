@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educational Portfolio · Three Projects</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+body{
+  background:
+    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+    url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 70px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#006080;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+}
+
+nav ul li{
+  margin-left:30px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#006080;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.logout{
+  background:#00ace6;
+  color:white;
+  padding:6px 16px;
+  border-radius:20px;
+}
+
+/* ===== MAIN SECTION ===== */
+.section{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 20px;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  display:flex;
+  gap:40px;
+  justify-content:center;
+  flex-wrap:wrap;
+  max-width:1400px;      /* increased to fit three cards nicely */
+  width:100%;
+}
+
+/* ===== PROJECT CARD ===== */
+.card{
+  background:white;
+  padding:50px;          /* same bigger padding */
+  width:440px;           /* exactly same width */
+  min-height:380px;      /* exactly same min-height */
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 18px 40px rgba(0,0,0,0.25);
+  transition:transform 0.3s, box-shadow 0.3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+/* subtle hover effect — keeps design lively */
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 50px rgba(0,0,0,0.3);
+}
+
+/* ===== TEXT ===== */
+.card h2{
+  font-size:28px;
+  color:#006080;
+  margin-bottom:20px;
+}
+
+.card p{
+  font-size:16px;
+  color:#334155;
+  line-height:1.7;
+  margin-bottom:30px;
+  text-align:justify;
+}
+
+/* ===== BUTTON ===== */
+.project-btn{
+  display:inline-block;
+  text-decoration:none;
+  background:#00ace6;
+  color:white;
+  padding:12px 30px;
+  border-radius:25px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.project-btn:hover{
+  background:#007bb3;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#006080;
+  color:white;
+  text-align:center;
+  padding:18px;
+  font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="project.html">Project</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Project 1 — Prelim -->
+    <div class="card">
+      <h2>Prelim Performance Task</h2>
+      <p>
+       This project presents a complete collection of all tasks and 
+       outputs from the Prelim Performance Task, highlighting the learning process,
+        practical skills, and foundational understanding of web development through organized
+         exercises and interactive activities.
+      </p>
+      <a href="prelim.html" class="project-btn">View Prelim Task</a>
+    </div>
+
+    <!-- Project 2 — Midterm -->
+    <div class="card">
+      <h2>Midterm Performance Task</h2>
+      <p>
+        A complete collection of tasks and outputs from the Midterm Performance Task.
+        Showcases the development process, practical skills, and overall proficiency
+        in web development through structured projects and interactive learning materials.
+      </p>
+      <a href="midterm.html" class="project-btn">View Midterm Task</a>
+    </div>
+
+    <div class="card">
+      <h2>Finals Performance Task</h2>
+      <p>
+      The culminating portfolio piece is a collection of all completed tasks throughout the semester. It presents activities, exercises, and projects compiled in one place, showing the progress, effort, and skills developed over time. Each task is organized clearly and reflects the student’s learning, improvement, and understanding.
+
+      </p>
+      <a href="finals.html" class="project-btn">View Final Task</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+© 2026 Student Portfolio | Jenelyn B. Sunido
+</footer>
+
+<script>
+function logout(){
+  alert("You have been logged out.");
+}
+</script>
+
+</body>
+</html>

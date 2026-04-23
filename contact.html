@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Portfolio</title>
+
+<style>
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Arial, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+body{
+  background:
+    linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+    url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 70px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#006080;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+}
+
+nav ul li{
+  margin-left:30px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#006080;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.logout{
+  background:#00ace6;
+  color:white;
+  padding:6px 16px;
+  border-radius:20px;
+}
+
+/* ===== MAIN ===== */
+.home{
+  flex:1;
+  display:flex;
+  justify-content:center; /* center horizontally */
+  align-items:center;     /* center vertically */
+  padding:50px;
+}
+
+/* ===== CONTACT CARD ===== */
+.card{
+  background:white;
+  padding:80px 60px;
+  max-width:850px;
+  width:95%;
+  text-align:left;
+  border-radius:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.3);
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+
+
+
+
+
+
+/* ===== TITLE ===== */
+.card h1{
+  font-size:40px;
+  margin-bottom:45px;
+  color:#006080;
+  text-align:center; /* Centered */
+  border-bottom:2px solid #00ace6;
+  display:inline-block;
+  padding-bottom:10px;
+  width:100%;
+}
+
+/* ===== CONTACT DETAILS ===== */
+.contact-item{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:30px;
+}
+
+.contact-item i{
+  color:#00ace6;
+  font-size:24px;
+  min-width:30px;
+  margin-top:3px;
+}
+
+.contact-item p{
+  font-size:18px;
+  color:#334155;
+  line-height:1.8;
+  margin:0;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#006080;
+  color:white;
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  box-shadow:0 -5px 15px rgba(0,0,0,0.2);
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="project.html">Project</a></li>
+    <li><a href="contact.html">Contact</a></li>
+   <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section class="home">
+  <div class="card">
+    <h1>Contact Information</h1>
+
+    <div class="contact-item">
+      <i class="fas fa-phone"></i>
+      <p><strong>Contact Number:</strong> 0976 543 2100</p>
+    </div>
+
+    <div class="contact-item">
+      <i class="fas fa-envelope"></i>
+      <p><strong>Email Address:</strong> jenelynsunido@gmail.com</p>
+    </div>
+
+    <div class="contact-item">
+      <i class="fas fa-graduation-cap"></i>
+      <p><strong>Education:</strong> Our Lady of the Sacred Heart College, BS Information Technology</p>
+    </div>
+
+    <div class="contact-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <p><strong>Location:</strong> Maturanoc, Guimba, Nueva Ecija</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+© 2026 Student Portfolio | Jenelyn B. Sunido
+</footer>
+
+<script>
+function logout(){
+  alert("You have been logged out.");
+}
+</script>
+
+</body>
+</html>

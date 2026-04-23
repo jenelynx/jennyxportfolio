@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Educational Portfolio</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+body{
+background:
+linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)),
+url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+/* ===== NAVBAR ===== */
+/* === ITO ANG GINAYA NATIN SA REFERENCE === */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 70px;
+  background:rgba(255,255,255,0.9);
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#006080;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+}
+
+nav ul li{
+  margin-left:30px;
+}
+
+nav ul li a{
+  text-decoration:none;
+  color:#006080;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.logout{
+  background:#00ace6;
+  color:white;
+  padding:6px 16px;
+  border-radius:20px;
+}
+/* ===== WAKAS NG NAVBAR STYLE ===== */
+
+
+/* ===== HOME ===== */
+.home{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
+
+/* ===== PORTFOLIO BOX ===== */
+/* === HINDI ITO GINALAW! EKSATO SA CODE MO === */
+.card{
+background:white;
+padding:80px;
+max-width:1000px;
+width:95%;
+text-align:center;
+border-radius:22px;
+box-shadow:0 20px 50px rgba(0,0,0,0.3);
+}
+
+/* TITLE — HINDI GINALAW */
+.card h1{
+font-size:42px;
+margin-bottom:25px;
+color:#006080;
+}
+
+/* TEXT — HINDI GINALAW */
+.card p{
+font-size:18px;
+line-height:1.8;
+color:#334155;
+margin-bottom:35px;
+}
+
+/* ===== BUTTONS ===== */
+.buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.btn{
+text-decoration:none;
+padding:14px 30px;
+border-radius:25px;
+font-size:15px;
+font-weight:bold;
+}
+
+/* PRIMARY */
+.btn-primary{
+background:#00ace6;
+color:white;
+}
+
+/* SECONDARY */
+.btn-secondary{
+background:white;
+border:2px solid #00ace6;
+color:#00ace6;
+}
+
+/* ===== FULL FOOTER BOX ===== */
+footer{
+background:#006080;
+color:white;
+text-align:center;
+padding:20px;
+font-size:14px;
+box-shadow:0 -5px 15px rgba(0,0,0,0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION BAR - STYLE GINAYA SA REFERENCE -->
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="project.html">Project</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<section class="home">
+  <!-- BOX AT HEADER — WALANG BINAGO -->
+  <div class="card">
+    <h1>My Educational Portfolio</h1>
+    <p>
+      I'm a BS Information Technology student passionate about programming
+      and web development. This portfolio showcases my academic projects
+      for the subject WS101 and my learning journey in web development.
+    </p>
+    <div class="buttons">
+      <a href="project.html" class="btn btn-primary">View Project</a>
+      <a href="about.html" class="btn btn-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Student Portfolio | Jenelyn B. Sunido
+</footer>
+
+<script>
+function logout(){
+  alert("You have been logged out.");
+}
+</script>
+
+</body>
+</html>

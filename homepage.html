@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educational Portfolio · Jenelyn Sunido</title>
+  <style>
+    /* ===== RESET & CORE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* ===== BACKGROUND (UNTOUCHED) ===== */
+    body {
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+        url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER / NAVBAR ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 70px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #006080;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .register {
+      background: #00ace6;
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .register:hover {
+      background: #006080;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 40px 20px;
+    }
+
+    /* ===== ABOUT ME SECTION ===== */
+    .about-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
+      border: 3px solid #006080;
+    }
+
+    .about-header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 25px;
+    }
+
+    .profile-picture {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+      outline: 2px solid #00ace6;
+      outline-offset: 2px;
+    }
+
+    .about-title h2 {
+      font-size: 28px;
+      color: #006080;
+    }
+
+    .about-title .subtitle {
+      color: #00ace6;
+      font-weight: 600;
+    }
+
+    .about-grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .about-left {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .about-right {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .info-item {
+      margin-bottom: 15px;
+    }
+
+    .info-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: bold;
+      display: block;
+    }
+
+    .info-value {
+      font-size: 15px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .bio-text {
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: #e0f2fe;
+      color: #006080;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid #006080;
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* --- GUMAGALAW NA BOXES + BORDER --- */
+    .project-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      cursor: pointer;
+      border: 3px solid #006080;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      border-color: #00ace6;
+    }
+
+    /* --- IMAGE CONTAINER --- */
+    .project-image {
+      height: 140px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f5f9;
+      border-bottom: 2px dashed #006080;
+    }
+
+    /* ✨ TOTOONG IMAGE */
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;      /* center ang button pahalang */
+      text-align: center;
+    }
+
+    .project-info h3 {
+      font-size: 18px;
+      color: #006080;
+      margin-bottom: 18px;      /* espasyo bago ang button */
+    }
+
+    /* ===== BUTTON STYLES (nakagitna) ===== */
+    .project-btn {
+      display: inline-block;
+      background: #006080;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      margin-top: 5px;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 8px rgba(0, 96, 128, 0.2);
+      cursor: pointer;
+      width: fit-content;       /* hindi mag-stretch */
+    }
+
+    .project-btn:hover {
+      background: #00ace6;
+      color: #fff;
+      box-shadow: 0 6px 12px rgba(0, 172, 230, 0.3);
+      transform: scale(1.02);
+      border-color: #006080;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #006080;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 13px;
+      margin-top: auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 15px 30px; }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .about-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Jenelyn Sunido</div>
+  <ul>
+    <li><a href="register.html" class="register">📝Register</a></li>
+  </ul>
+</nav>
+
+<div class="main-content">
+  
+  <section class="about-section">
+    <div class="about-card">
+      <div class="about-header">
+        <!-- profile placeholder (maaaring palitan ng aktwal na larawan) -->
+        <img src="profile.jpg" alt="Jenelyn Sunido" class="profile-picture">
+        
+        <div class="about-title">
+          <h2>Jenelyn B. Sunido</h2>
+          <p class="subtitle">BS Information Technology Student</p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-left">
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <span class="info-value">jenelynbaldosunido@gmail.com</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Subject</span>
+            <span class="info-value">WS101 - Web Development</span>
+          </div>
+        </div>
+        <div class="about-right">
+          <p class="bio-text">
+            👋 Hello! I'm a passionate BSIT student focused on building clean and functional websites. 
+            This portfolio represents my hard work and learning journey in web technologies.
+          </p>
+          <div class="skills">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Responsive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="projects-grid">
+      
+      <!-- CARD 1: Prelim Task -->
+      <div class="project-card">
+        <div class="project-image">
+          <img class="project-img" src="https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/675621954_2403446143508793_8303615354086553055_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG1xv6HDBbJEL1zDv2WailWbRPvga26VWJtE--BrbpVYoEhlpH3X0oSjZWvPI5MlQ_memsufIVRaS5OdnV5OdJn&_nc_ohc=fI3RbipyFq4Q7kNvwEohKKI&_nc_oc=Adp_3JDLdM2hZlfnT733p0fU_HyuSiKNyIebfQEzMilsEc3PcERfgDKY9oCfcptXVF0&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=-iidukDzQS_UtzAZ7mNUXg&oh=00_Af0BxV3CPHnlZxJCZCgpXv-xVM78wjrr2zoVec7HzG72Ig&oe=69EFB199" alt="Prelim Task Preview">
+        </div>
+        <div class="project-info">
+          <h3>Prelim Project</h3>
+          <a href="login.html" class="project-btn">📁 View Project</a>
+        </div>
+      </div>
+      
+      <!-- CARD 2: Midterm Task -->
+      <div class="project-card">
+        <div class="project-image">
+          <img class="project-img" src="https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/679771336_2403446610175413_8325187129080229973_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHquL51YR43OIYCYKvsyGL1j0oZLiKWKy6PShkuIpYrLm5l8KSmIQj1FEaKdpsJmfbBT6o_n_Y4iX1I_Ky8vAw7&_nc_ohc=x8Zcbbx0UzAQ7kNvwEDg0eq&_nc_oc=AdrZJ5-e8hJjaBxhICz2X5ZLv2YK4NzU1-7ARRn0pmVBEB7bxAGD9OuAbPn7ojA7Pw8&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=Zm6Q8dYfEriMZuMbjFYE7g&oh=00_Af1N8x3hKMnkNglIuQK0aIAp0P7mZkdLw9tqPZiFjzTVfg&oe=69EFA0AE" alt="Midterm Task Preview">
+        </div>
+        <div class="project-info">
+          <h3>Midterm Project</h3>
+          <a href="login.html" class="project-btn">📁 View Project</a>
+        </div>
+      </div>
+      
+      <!-- CARD 3: Finals Task -->
+      <div class="project-card">
+        <div class="project-image">
+          <img class="project-img" src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/679664064_2403447030175371_5875003185699299803_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHNI6okY9uWBJBfPTZYnq-XWvcRHpipq9pa9xEemKmr2sC4JbO4qrv1EjLTpy06YWlyu1HgkplqAp0gebTdDsY1&_nc_ohc=aXi23FF-GmwQ7kNvwEtLPT4&_nc_oc=AdrQ0I-l4uQLIl3shGDTHmF-Nvd8UZXOG2QE7mAPmcEv6figQuiMH6g2_tP5kvGdY4E&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=F4_5U2c71MRgeFxwQCQQxA&oh=00_Af3rBbIYTsnmr9sx0iH_xvaCDXlA5k1t_Vo_u0jOpwamPQ&oe=69EFB61A" alt="Finals Task Preview">
+        </div>
+        <div class="project-info">
+          <h3>Finals Project</h3>
+          <a href="login.html" class="project-btn">📁 View Project</a>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 Student Portfolio | Jenelyn B. Sunido | WS101 Web Development
+</footer>
+
+</body>
+</html>

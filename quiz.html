@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Educational Portfolio · Quiz</title>
+  <style>
+    /* ----- RESET & FULL HEIGHT ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+                  url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;            /* no page scroll */
+    }
+
+    /* ===== NAVBAR (original style) ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 70px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #006080;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin-left: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #006080;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: #00ace6;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    /* ===== MAIN (center card) ===== */
+    .home {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 30px 35px;     /* extra bottom padding so footer never touches */
+      overflow: hidden;
+    }
+
+    /* ===== MAIN QUIZ CARD ===== */
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(4px);
+      border-radius: 42px;
+      padding: 30px 35px;
+      width: 600px;
+      max-width: 95%;
+      box-shadow: 0 30px 50px -20px rgba(0, 60, 90, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      max-height: 85vh;
+    }
+
+    .card h2 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #006080;
+      margin-bottom: 10px;
+      border-left: 8px solid #00ace6;
+      padding-left: 22px;
+    }
+
+    /* timer row */
+    .timer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #e3f0fa;
+      padding: 10px 18px;
+      border-radius: 60px;
+      margin: 5px 0 18px 0;
+      border: 1px solid rgba(0, 172, 230, 0.3);
+    }
+
+    .timer-label {
+      font-weight: 600;
+      color: #006080;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timer-value {
+      background: white;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 20px;
+      color: #2c7a9e;
+    }
+
+    /* scrollable content */
+    .scrollable-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 6px 8px 4px;
+      margin-bottom: 10px;
+      min-height: 200px;
+      scrollbar-width: thin;
+      scrollbar-color: #b0d9f0 #f0f8ff;
+    }
+
+    .scrollable-content::-webkit-scrollbar {
+      width: 5px;
+    }
+    .scrollable-content::-webkit-scrollbar-track {
+      background: #f0f8ff;
+      border-radius: 20px;
+    }
+    .scrollable-content::-webkit-scrollbar-thumb {
+      background: #b0d9f0;
+      border-radius: 20px;
+    }
+
+    /* question card */
+    .question-card {
+      background: #f4fbff;
+      border-radius: 28px;
+      padding: 22px;
+      border: 1px solid rgba(0, 172, 230, 0.2);
+      box-shadow: 0 6px 14px -6px rgba(0,90,120,0.15);
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #006080;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      padding: 14px 20px;
+      background: white;
+      border: 2px solid #b9ddf5;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #144d66;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #ddf1ff;
+      border-color: #00ace6;
+    }
+
+    .option-btn.selected {
+      background: #006080;
+      border-color: #006080;
+      color: white;
+    }
+
+    .option-btn.correct {
+      background: #27ae60;
+      border-color: #27ae60;
+      color: white;
+    }
+
+    .option-btn.wrong {
+      background: #e67e22;
+      border-color: #e67e22;
+      color: white;
+    }
+
+    .option-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 10px 0 0 0;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 60px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #d0e2f0;
+      color: #2c5c77;
+      transition: 0.2s;
+      flex: 1;
+    }
+
+    .btn.next {
+      background: #00ace6;
+      color: white;
+      box-shadow: 0 6px 14px rgba(0, 172, 230, 0.3);
+    }
+
+    .btn.next:hover:not(:disabled) {
+      background: #0086b3;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: #b8d1e4;
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+    }
+
+    /* ===== RESULTS CARD ===== */
+    .results-card {
+      padding: 5px 5px 10px;
+    }
+
+    .results-card h2 {
+      border-left: none;
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    .final-score {
+      font-size: 44px;
+      font-weight: 800;
+      color: #2fa89d;
+      text-align: center;
+      background: #e0f5f2;
+      border-radius: 80px;
+      padding: 12px 10px;
+      margin: 10px 0 20px;
+    }
+
+    .review-item {
+      background: white;
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border-left: 6px solid #00ace6;
+      box-shadow: 0 4px 10px rgba(0, 90, 120, 0.05);
+    }
+
+    .review-item strong {
+      color: #006080;
+      font-size: 15px;
+    }
+
+    .review-item span {
+      font-size: 14px;
+      line-height: 1.5;
+      display: block;
+      margin-top: 6px;
+    }
+
+    .correct {
+      color: #27ae60;
+    }
+
+    .wrong {
+      color: #e67e22;
+    }
+
+    /* action buttons container (try again + back to prelim) */
+    .results-actions {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0 5px;
+    }
+
+    .btn-reset {
+      background: #2fa89d;
+      color: white;
+      border: none;
+      padding: 14px 0;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px -8px #1f7a72;
+      flex: 1;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .btn-reset:hover {
+      background: #1f8a7e;
+    }
+
+    /* back to midterm button — matches style and fixed class */
+    .btn-midterm {
+      background: #3498db;        /* distinct blue */
+      color: white;
+      border: none;
+      padding: 14px 0;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px -8px #1f5b8a;
+      flex: 1;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-midterm:hover {
+      background: #2c7cb0;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #006080;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="logo">Jenelyn Sunido</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="project.html">Project</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== MAIN QUIZ SECTION ===== -->
+  <section class="home">
+    <div class="card">
+      <h2>🖥️ Parts of Computer</h2>
+
+      <!-- Timer row -->
+      <div class="timer-row">
+        <span class="timer-label">⏳ time left</span>
+        <span class="timer-value" id="timerDisplay">60s</span>
+      </div>
+
+      <!-- dynamic content (questions or results) -->
+      <div class="scrollable-content" id="quizContent"></div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Student Portfolio | Jenelyn B. Sunido
+  </footer>
+
+  <script>
+    function logout() { alert("👋 You have been logged out."); }
+
+    // ----- QUIZ DATA -----
+    const quizQuestions = [
+      { question: "What do you use to type letters?", options: ["Mouse", "Keyboard", "Speaker"], correct: 1 },
+      { question: "What shows pictures on the computer?", options: ["Monitor", "Printer", "USB"], correct: 0 },
+      { question: "Which one prints on paper?", options: ["Headset", "Printer", "Microphone"], correct: 1 },
+      { question: "What moves the arrow on the screen?", options: ["Mouse", "Scanner", "Camera"], correct: 0 },
+      { question: "The “brain” of the computer is the:", options: ["CPU", "Speaker", "Fan"], correct: 0 }
+    ];
+
+    // ----- STATE -----
+    let currentQuestion = 0;
+    let userAnswers = Array(quizQuestions.length).fill(null);
+    let quizCompleted = false;
+    let timerInterval = null;
+    let timeLeft = 60;
+    let timerStarted = false;
+
+    const quizContent = document.getElementById('quizContent');
+    const timerDisplay = document.getElementById('timerDisplay');
+
+    function startTimer() {
+      if (timerStarted) return;
+      timerStarted = true;
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft + 's';
+        if (timeLeft <= 0) {
+          timeLeft = 0;
+          timerDisplay.textContent = '0s';
+          stopTimer();
+          if (!quizCompleted) {
+            quizCompleted = true;
+            showResults(true);
+          }
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function calculateScore() {
+      return userAnswers.reduce((score, ans, i) => score + (ans === quizQuestions[i].correct ? 1 : 0), 0);
+    }
+
+    function renderQuestion() {
+      if (quizCompleted) return;
+
+      const q = quizQuestions[currentQuestion];
+      const selected = userAnswers[currentQuestion];
+
+      let html = `<div class="question-card">
+                    <div class="question-text">${currentQuestion + 1}. ${q.question}</div>
+                    <div class="options">`;
+
+      q.options.forEach((opt, i) => {
+        const selectedClass = (selected === i) ? 'selected' : '';
+        html += `<button class="option-btn ${selectedClass}" onclick="selectAnswer(${currentQuestion}, ${i})">${opt}</button>`;
+      });
+
+      html += `</div></div>
+              <div class="nav-buttons">
+                <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>← Previous</button>
+                <button class="btn next" onclick="nextQuestion()">${currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next →'}</button>
+              </div>`;
+
+      quizContent.innerHTML = html;
+    }
+
+    window.selectAnswer = function(qIdx, aIdx) {
+      if (!timerStarted) startTimer();
+      userAnswers[qIdx] = aIdx;
+      renderQuestion();
+    };
+
+    window.nextQuestion = function() {
+      if (currentQuestion < quizQuestions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      } else {
+        quizCompleted = true;
+        stopTimer();
+        showResults();
+      }
+    };
+
+    window.previousQuestion = function() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion();
+      }
+    };
+
+    function showResults(timeout = false) {
+      const score = calculateScore();
+      let html = `<div class="results-card">
+                    <h2>${timeout ? '⏰ time’s up!' : '🎉 quiz completed!'}</h2>
+                    <div class="final-score">${score} / 5</div>
+                    <h3 style="color:#006080; margin-bottom:10px; font-size:18px;">📋 review answers</h3>`;
+
+      quizQuestions.forEach((q, i) => {
+        const ans = userAnswers[i];
+        const correct = ans === q.correct;
+        const userAns = (ans !== null) ? q.options[ans] : '— not answered —';
+        const correctAns = q.options[q.correct];
+
+        html += `<div class="review-item">
+                  <strong>${i + 1}. ${q.question}</strong><br>
+                  <span class="${correct ? 'correct' : 'wrong'}">
+                    your answer: ${userAns}<br>
+                    ${!correct ? '✓ correct: ' + correctAns : '✓ correct'}
+                  </span>
+                </div>`;
+      });
+
+      // FIXED: add both buttons "try again" and "back to midterm" — with correct class & link
+      html += `<div class="results-actions">
+                <button class="btn-reset" onclick="location.reload()">⟲ try again</button>
+                <a href="midterm.html" class="btn-midterm">↩ back to midterm</a>
+              </div></div>`;
+
+      quizContent.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderQuestion();
+      timerDisplay.textContent = timeLeft + 's';
+    });
+  </script>
+</body>
+</html>

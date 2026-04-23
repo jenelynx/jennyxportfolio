@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>✨ Jenelyn Sunido | Modern Portfolio</title>
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html, body {
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+    }
+
+    body {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(220, 242, 255, 0.1)),
+                  url("https://i.pinimg.com/1200x/b3/be/3a/b3be3a3d7253c5e0d796574cae5a3391.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ----- NAVBAR (PINALITAN NG STYLE GALING SA REFERENCE) ----- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 70px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #006080;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin-left: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #006080;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: #00ace6;
+      color: white !important;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+    /* ===== WAKAS NG NAVBAR STYLE ===== */
+
+    /* ----- MAIN CONTENT (WALANG BINAGO) ----- */
+    .home {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      max-width: 1300px;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    /* ----- SECTIONS ----- */
+    .info-section {
+      flex: 1.1;
+      max-height: 580px;
+      overflow-y: auto;
+    }
+
+    .goal-section {
+      flex: 2;
+      max-height: 580px;
+      overflow-y: auto;
+    }
+
+    .info-section, .goal-section {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 25px 28px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .info-section::-webkit-scrollbar, .goal-section::-webkit-scrollbar {
+      width: 5px;
+    }
+    .info-section::-webkit-scrollbar-thumb, .goal-section::-webkit-scrollbar-thumb {
+      background: #00ace6;
+      border-radius: 10px;
+    }
+
+    .info-section:hover, .goal-section:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 172, 230, 0.5);
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: #004d66;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 6px 18px;
+      border-radius: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ----- PROFILE PIC ----- */
+    .profile-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 20px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .profile-wrapper img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .glow-ring {
+      position: absolute;
+      top: -8px; left: -8px; right: -8px; bottom: -8px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #00ace6, #006080, #ffffff);
+      filter: blur(8px);
+      z-index: 1;
+      opacity: 0.6;
+      animation: rotate 6s linear infinite;
+    }
+
+    @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+    /* ----- LIST ITEMS (INAYOS ANG ALIGNMENT) ----- */
+    .info-list, .goal-list { 
+      width: 100%; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px; 
+    }
+
+    .item {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 14.5px;
+      color: #013243;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    /* Inayos na label at value alignment */
+    .info-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .info-label {
+      width: 95px;
+      font-weight: 800;
+      color: #006080;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .info-value {
+      flex: 1;
+      font-weight: 500;
+      color: #013243;
+    }
+
+    .item:hover {
+      background: white;
+      padding-left: 22px;
+      box-shadow: 0 8px 18px rgba(0, 96, 128, 0.1);
+    }
+
+    .goal-text {
+      line-height: 1.6;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .goal-text::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; height: 100%; width: 4px;
+      background: #00ace6;
+    }
+
+    .about-me-subtitle {
+      font-size: 17px;
+      color: #004d66;
+      font-weight: 700;
+      margin: 12px 0 8px 0;
+      align-self: flex-start;
+      border-left: 5px solid #00ace6;
+      padding-left: 14px;
+    }
+
+    .highlight-card {
+      background: linear-gradient(45deg, #006080, #00ace6) !important;
+      color: white !important;
+      justify-content: center;
+      font-weight: 800;
+      text-align: center;
+      border: none !important;
+      padding: 14px 16px;
+    }
+
+    /* ----- FOOTER (PINALITAN NG STYLE GALING SA REFERENCE) ----- */
+    footer {
+      background: #006080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    }
+    /* ===== WAKAS NG FOOTER STYLE ===== */
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      body, html { overflow: auto; position: static; }
+      .container { flex-direction: column; padding: 10px; }
+      nav { padding: 15px; }
+      .home { height: auto; }
+      .info-section, .goal-section { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR - STYLE GALING SA REFERENCE -->
+  <nav>
+    <div class="logo">Jenelyn Sunido</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="project.html">Project</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="logout" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="home">
+    <div class="container">
+      <!-- PERSONAL INFORMATION SECTION (INAYOS NA) - WALANG BINAGO -->
+      <div class="info-section">
+        <h2 class="section-title">Personal Information</h2>
+        <div class="profile-wrapper">
+          <div class="glow-ring"></div>
+          <img src="profile.jpg" alt="Jenelyn">
+        </div>
+        <div class="info-list">
+          <div class="item info-item">
+            <span class="info-label">👤 Name:</span>
+            <span class="info-value">Jenelyn B. Sunido</span>
+          </div>
+          <div class="item info-item">
+            <span class="info-label">🎂 Age:</span>
+            <span class="info-value">20 years old</span>
+          </div>
+          <div class="item info-item">
+            <span class="info-label">📧 Email:</span>
+            <span class="info-value">jenelynbaldosunido@gmail.com</span>
+          </div>
+          <div class="item info-item">
+            <span class="info-label">📞 Contact:</span>
+            <span class="info-value">09560026885</span>
+          </div>
+          <div class="item info-item">
+            <span class="info-label">📍 Location:</span>
+            <span class="info-value">Maturanoc, Guimba, Nueva Ecija</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT ME & GOALS SECTION - WALANG BINAGO -->
+      <div class="goal-section">
+        <h2 class="section-title">About Me</h2>
+        <div class="goal-list">
+          <div class="item goal-text">👩‍💻 I'm Jenelyn, a passionate IT student from Maturanoc, Guimba, Nueva Ecija. I love turning complex problems into simple, beautiful, and intuitive designs. I am a hardworking and motivated student who enjoys learning new things, especially about technology. I always try my best, stay positive, and aim to improve myself. My goal is to succeed and achieve my dreams in the future.</div>
+          
+          <div class="about-me-subtitle">✨ My Goals</div>
+          <div class="item goal-text">💻 To finish my studies and graduate successfully so I can build a better future.</div>
+          <div class="item goal-text">🧠 To improve my skills, especially in technology, so I can become more knowledgeable and capable.</div>
+          <div class="item goal-text">🚀 To achieve my dreams and have a stable future while helping my family.</div>
+          
+          <div class="item highlight-card">DREAM BIG • WORK HARD • STAY FOCUSED</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER - STYLE GALING SA REFERENCE -->
+  <footer>
+    © 2026 Student Portfolio | Jenelyn B. Sunido
+  </footer>
+
+  <script>
+    function logout() {
+      alert("Session Ended. See you soon!");
+    }
+  </script>
+</body>
+</html>
